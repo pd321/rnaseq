@@ -8,7 +8,7 @@ rule kallisto:
 	conda:
 		"envs/kallisto.yaml"
 	threads: 
-		threads_high
+		threads_mid
 	params:
 		idx = config["kallisto"]["idx"],
 		strand = config["kallisto"]["strand"]

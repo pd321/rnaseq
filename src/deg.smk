@@ -6,6 +6,7 @@ rule deseq2:
 	output:
 		deg = expand("results/deg/{contrast}.xls", contrast = contrasts),
 		pca_plot = "results/deg/pca.pdf"
+	log: "logs/deseq.log"
 	conda:
 		"envs/deseq2.yaml"
 	threads: 
