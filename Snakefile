@@ -1,9 +1,9 @@
 include: "src/common.smk"
-include: "src/addons.smk"
 include: "src/align.smk"
 include: "src/qc.smk"
 include: "src/deg.smk"
-
+include: "src/go.smk"
+include: "src/gsea.smk"
 
 deg = expand("results/deg/{contrast}.xls", contrast = contrasts) + ["results/deg/pca.pdf"]
 qc = ["results/qc/multiqc/multiqc_report.html"]
