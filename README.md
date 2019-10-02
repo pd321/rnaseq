@@ -1,2 +1,4 @@
-# snakemake-rnaseq
-Snakemake based pipeline for analysis of rnaseq data
+# rnaseq
+
+*under active development*
+Snakemake based pipleine for rnaseq data analysis

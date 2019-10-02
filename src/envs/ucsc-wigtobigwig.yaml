@@ -1,0 +1,7 @@
+name: ucsc-wigtobigwig
+channels:
+ - conda-forge
+ - bioconda
+ - defaults
+dependencies:
+ - ucsc-wigtobigwig = 377

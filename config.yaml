@@ -1,0 +1,23 @@
+genome: 'hg19'
+chrom_sizes: 'data/external/ref/fa/genome.chrom.sizes'
+contrasts: 'trt_vs_cnt'
+tx2gene: 'data/external/ref/gtf/tx2gene.tsv'
+geneinfo: 'data/external/ref/gtf/geninfo.tsv'
+
+kallisto:
+  idx: 'data/external/ref/idx/kallisto/kallisto.idx'
+  strand: ''
+
+# ------------ Addons -----------
+addons:
+  go: true
+  star: false
+  gsea: true
+
+star:
+  star_genome: 'data/external/ref/idx/star'
+
+gsea:
+  collections: 'h,c2'
+  msigdb_version: '7.0'
+  jar_loc: '/path/to/gsea.jar'

@@ -1,0 +1,10 @@
+# Ignore editor files
+.idea
+
+# Ignore test files
+.test
+!.test/data
+!.test/config.yaml
+!.test/metadata.tsv
+.Rproj.user
+*.Rproj
