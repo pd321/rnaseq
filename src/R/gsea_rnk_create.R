@@ -26,7 +26,7 @@ rnk_df <- dplyr::mutate(rnk_df, GeneName = toupper(GeneName))
 rnk_df <- dplyr::arrange(rnk_df, dplyr::desc(log2FoldChange))
 
 # Write output
-write.table(x=rnk_df, file=snakemake@params[["gsearnk"]], sep = "\t", row.names = FALSE, quote = FALSE, col.names = FALSE)
+write.table(x=rnk_df, file=snakemake@output[["gsearnk"]], sep = "\t", row.names = FALSE, quote = FALSE, col.names = FALSE)
 
 # Reproducibility
 sessioninfo::session_info()

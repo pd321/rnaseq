@@ -33,7 +33,7 @@ go <- goseq::goseq(pwf, genome = snakemake@params[["genome"]], id = "ensGene", t
 go$fdr <- p.adjust(go$over_represented_pvalue)
 
 # Write output
-write.table(go, file = snakemake@input[["gores"]], sep = "\t", row.names = FALSE)
+write.table(go, file = snakemake@output[["gores"]], sep = "\t", row.names = FALSE)
 
 # Reproducibility
 sessioninfo::session_info()
