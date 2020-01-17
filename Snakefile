@@ -1,6 +1,6 @@
 include: "src/common.smk"
-include: "src/align.smk"
 include: "src/qc.smk"
+include: "src/align.smk"
 include: "src/deg.smk"
 include: "src/go.smk"
 include: "src/gsea.smk"
@@ -21,7 +21,6 @@ if config['addons']['gsea']:
 rule all:
 	input:
 		out_files
-
 
 onsuccess:
 	shell("if command -v telegram-notify; then telegram-notify --success --text \'Snakemake:rnaseq:{} Completed\'; fi".format(foldername))

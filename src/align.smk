@@ -1,6 +1,6 @@
 rule kallisto:
 	input: 
-		get_fastq
+		rules.trimgalore.output if config['addons']['trimgalore'] else get_fastq
 	output: 
 		"results/counts/{sample}/abundance.tsv"
 	log: 
@@ -23,7 +23,7 @@ rule kallisto:
 
 rule star:
 	input: 
-		get_fastq
+		rules.trimgalore.output if config['addons']['trimgalore'] else get_fastq
 	output:
 		wig = temp("results/bam/{sample}/{sample}.Signal.Unique.str1.out.wig"),
 		wig_mult = temp("results/bam/{sample}/{sample}.Signal.UniqueMultiple.str1.out.wig"),

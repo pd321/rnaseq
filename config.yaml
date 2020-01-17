@@ -13,6 +13,7 @@ addons:
   go: true
   star: false
   gsea: true
+  trimgalore: false
 
 star:
   star_genome: 'data/external/ref/idx/star'
@@ -21,3 +22,8 @@ gsea:
   collections: 'h,c2'
   msigdb_version: '7.0'
   jar_loc: '/path/to/gsea.jar'
+
+trimgalore:
+  quality: 0
+  stringency: 5
+  e: 0.1
