@@ -1,7 +1,6 @@
-name: trimgalore
 channels:
  - conda-forge
  - bioconda
  - defaults
 dependencies:
- - trim-galore = 0.6.5
+ - star = 2.7.10b

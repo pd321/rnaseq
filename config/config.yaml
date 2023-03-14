@@ -1,0 +1,34 @@
+threads: 1
+
+salmon:
+  idx: 'data/external/ref/idx/salmon/'
+  gtf: 'data/external/ref/gtf/genes.gtf'
+  libtype: A
+
+trimgalore:
+  quality: 0
+  stringency: 5
+  e: 0.1
+
+# ------------ Addons -----------
+addons:
+  go: false
+  star: false
+  gsea: false
+  deseq2: false
+
+star:
+  idx: 'data/external/ref/idx/star/100'
+
+wig2bigwig:
+  chrom_sizes: 'data/external/ref/fa/genome.chrom.sizes'
+
+deseq2:
+  contrasts: ''
+  tx2gene: 'data/external/ref/gtf/tx2gene.tsv'
+  geneinfo: 'data/external/ref/gtf/geninfo.tsv'
+
+gsea:
+  collections: 'h,c2'
+  msigdb_version: '7.0'
+  jar_loc: '/path/to/gsea.jar'

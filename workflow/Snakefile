@@ -1,19 +1,22 @@
-include: "src/common.smk"
-include: "src/qc.smk"
-include: "src/align.smk"
-include: "src/deg.smk"
-include: "src/go.smk"
-include: "src/gsea.smk"
+include: "rules/common.smk"
+include: "rules/qc.smk"
+include: "rules/align.smk"
+include: "rules/bw.smk"
+include: "rules/deg.smk"
+include: "rules/go.smk"
+include: "rules/gsea.smk"
 
-deg = expand("results/deg/{contrast}.xls", contrast = contrasts) + ["results/deg/pca.pdf"]
 qc = ["results/qc/multiqc/multiqc_report.html"]
 out_files = deg + qc
 
-if config['addons']['go']:
-	out_files += expand("results/go/{contrast}.xls", contrast = contrasts)
+if config['addons']['deseq2']:
+	out_files += expand("results/deg/{contrast}.xls", contrast = contrasts) + ["results/deg/pca.pdf"]
 
 if config['addons']['star']:
 	out_files += expand("results/bw/{sample}.bw", contrast = contrasts)
+
+if config['addons']['go']:
+	out_files += expand("results/go/{contrast}.xls", contrast = contrasts)
 
 if config['addons']['gsea']:
 	out_files += expand("results/gsea/{contrast}_{collection}.done", contrast = contrasts, collection = config['gsea']['collections'].split(","))

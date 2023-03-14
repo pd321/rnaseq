@@ -2,11 +2,11 @@ rule trimgalore:
 	input:
 		get_fastq
 	output:
-		temp(["results/bam/{sample}_val_1.fq.gz", "results/bam/{sample}_val_2.fq.gz"])
+		["results/qc/trimming/{sample}_val_1.fq.gz", "results/qc/trimming/{sample}_val_2.fq.gz"]
 	conda:
-		"envs/trimgalore.yaml"
+		"../envs/trimgalore.yaml"
 	log:
-		"logs/trimgalore/{sample}.log"
+		"logs/qc/trimgalore/{sample}.log"
 	params:
 		quality = config['trimgalore']['quality'],
 		stringency = config['trimgalore']['stringency'],
@@ -30,20 +30,19 @@ rule fastqc:
 	output:
 		html="results/qc/fastqc/{sample}_{group}_fastqc.html",
 		zip="results/qc/fastqc/{sample}_{group}_fastqc.zip"
-	threads: threads_mid
-	params:
-		"--threads {}".format(threads_mid)
+	log: "logs/qc/fastqc/{sample}_{group}.log"
+	threads: config_threads
 	wrapper:
-		"0.36.0/bio/fastqc"
+		"v1.23.5/bio/fastqc"
 
 rule multiqc:
 	input:
 		expand(["results/qc/fastqc/{sample}_{group}_fastqc.html", 
-			"results/counts/{sample}/abundance.tsv"], group=["r1", "r2"], sample = samples)
+			"results/counts/{sample}/quant.sf"], group=["r1", "r2"], sample = samples)
 	output:
 		report("results/qc/multiqc/multiqc_report.html", caption="report/multiqc.rst", category="Quality control")
 	conda:
-		"envs/multiqc.yaml"
+		"../envs/multiqc.yaml"
 	threads: threads_high
 	log:
 		"logs/multiqc/multiqc.log"

@@ -1,0 +1,57 @@
+$schema: "http://json-schema.org/draft-06/schema#"
+
+description: snakemake configuration file
+
+type: object
+
+properties:
+  threads:
+    type: integer
+  salmon:
+    type: object
+    properties:
+      idx:
+        type: string
+      gtf:
+        type: string
+      libtype:
+        type: string
+      required:
+        - idx
+        - gtf
+        - libtype
+  trimgalore:
+    type: object
+    properties:
+      quality:
+        type: integer
+      stringency:
+        type: integer
+      e:
+        type: number
+      required:
+        - quality
+        - stringency
+        - e
+  addons:
+    type: object
+    properties:
+      go:
+        type: boolean
+      star:
+        type: boolean
+      gsea:
+        type: boolean
+      deseq2:
+        type: boolean
+    required:
+      - go
+      - star
+      - gsea
+      - deseq2
+
+required:
+  - threads
+  - salmon
+  - trimgalore
+  - addons
