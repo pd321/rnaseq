@@ -26,9 +26,12 @@ wig2bigwig:
 deseq2:
   contrasts: ''
   tx2gene: 'data/external/ref/gtf/tx2gene.tsv'
-  geneinfo: 'data/external/ref/gtf/geninfo.tsv'
+  geneinfo: 'data/external/ref/gtf/geneinfo.tsv'
 
 gsea:
   collections: 'h,c2'
   msigdb_version: '7.0'
   jar_loc: '/path/to/gsea.jar'
+
+go:
+  genome: 'mm10'

@@ -7,13 +7,13 @@ include: "rules/go.smk"
 include: "rules/gsea.smk"
 
 qc = ["results/qc/multiqc/multiqc_report.html"]
-out_files = deg + qc
+out_files = qc
 
 if config['addons']['deseq2']:
 	out_files += expand("results/deg/{contrast}.xls", contrast = contrasts) + ["results/deg/pca.pdf"]
 
 if config['addons']['star']:
-	out_files += expand("results/bw/{sample}.bw", contrast = contrasts)
+	out_files += expand("results/bw/{sample}.bw", sample = samples)
 
 if config['addons']['go']:
 	out_files += expand("results/go/{contrast}.xls", contrast = contrasts)
@@ -26,7 +26,7 @@ rule all:
 		out_files
 
 onsuccess:
-	shell("if command -v telegram-notify; then telegram-notify --success --text \'Snakemake:rnaseq:{} Completed\'; fi".format(foldername))
+	shell("if command -v telegram-notify; then telegram-notify --success --text \'Snakemake:rnaseq:{} Completed\'; fi".format(foldername.replace("_", "\\_")))
 
 onerror:
-	shell("if command -v telegram-notify; then telegram-notify --error --text \'Snakemake:rnaseq:{} Failed\'; fi".format(foldername))
+	shell("if command -v telegram-notify; then telegram-notify --error --text \'Snakemake:rnaseq:{} Failed\'; fi".format(foldername.replace("_", "\\_")))

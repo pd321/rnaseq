@@ -6,7 +6,7 @@ import time
 
 report: "../report/workflow.rst"
 
-configfile: '../../config/config.yaml'
+configfile: 'config/config.yaml'
 validate(config, schema="../schemas/config.schema.yaml")
 
 # Setup vars
@@ -14,7 +14,7 @@ config_threads = int(config["threads"])
 foldername = os.path.basename(os.getcwd())
 
 # Load in metadata
-metadata_file = "../../config/metadata.tsv"
+metadata_file = "config/metadata.tsv"
 metadata_df = pd.read_csv(metadata_file, sep = "\t").set_index('sample_name', drop=False)
 # validate(metadata_df, schema="schemas/metadata_schema.yaml")
 
@@ -22,7 +22,7 @@ metadata_df = pd.read_csv(metadata_file, sep = "\t").set_index('sample_name', dr
 samples = metadata_df.index.tolist()
 
 # Get contrasts
-contrasts = config["contrasts"].split(",")
+contrasts = config["deseq2"]["contrasts"].split(",")
 
 # Get the raw fastq files to start with
 def get_fastq(wildcards):

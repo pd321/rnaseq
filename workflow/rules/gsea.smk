@@ -3,7 +3,7 @@ rule gsea_rnk_create:
 		degxls = 'results/deg/{contrast}.xls'
 	output: 
 		gsearnk = temp('results/gsea/{contrast}.rnk')
-	threads: threads_low
+	threads: 1
 	log: 'logs/gsea/{contrast}_rnk_create.log'
 	params:
 		mean_fpkm_cutoff = 0.5
@@ -13,7 +13,7 @@ rule gsea_rnk_create:
 rule gsea:
 	input: rules.gsea_rnk_create.output
 	output: 'results/gsea/{contrast}_{collection}.done'
-	threads: threads_low
+	threads: 1
 	params:
 		gmt_file = get_gmt_file,
 		jar_loc = config['gsea']['jar_loc']
